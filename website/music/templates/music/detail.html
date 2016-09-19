@@ -1,0 +1,49 @@
+{% extends "music/base.html" %}
+{% block title %}Album Details{% endblock title %}
+
+{% block body %}
+<div class="container">
+	<div id="wrapper">
+	    <!-- Sidebar -->
+	    <div id="sidebar-wrapper">
+	        <ul class="sidebar-nav">
+	        	<div class="thumbnail">
+		            <img src="{{ album.album_logo.url }}">
+		            <div class="caption">
+	            		<h3>{{ album }}</h3>
+	            	</div>
+	            </div>
+	        </ul>
+	    </div>
+	    <!-- /#sidebar-wrapper -->
+		<button class="btn btn-primary">View All</button>
+		<button type="button" class="btn btn-link">Add New Song</button>
+		<br>
+		<h2>All Songs</h2>
+		<table class="table">
+			<thead class="thead-inverse">
+				<tr>
+					<th>Title</th>
+					<th>Audio File</th>
+					<th>Favorite</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for song in album.song_set.all  %}
+				<tr>
+				<td>{{ song.song_title }}</td>
+				<td>{{ song.file_type }}</td>
+				<td>
+					{% if song.is_favorite %}
+						<img src="https://cdn2.iconfinder.com/data/icons/diagona/icon/16/031.png">
+					{% endif %}		
+				</td>
+				<td></td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+{% endblock body %}
